@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "description": "Project TODO API practice",
   "scripts": {
-    "start": "NODE_ENV=production node ./dist/start.js",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "build": "tsc",
     "postinstall": "npm run build",
     "dev": "NODE_ENV=production ts-node-dev --ignore-watch node_modules ./src/start.ts",
@@ -21,6 +21,7 @@
     "http-status": "^1.5.0",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
+    "pm2": "^5.1.2",
     "sequelize": "^6.8.0",
     "sqlite3": "^5.0.2",
     "winston": "^3.3.3"
