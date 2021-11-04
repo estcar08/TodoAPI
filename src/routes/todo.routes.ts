@@ -5,6 +5,12 @@ import { middleware } from '../middlewares';
 export const register = (router: Router) => {
 
     /**
+     * GET /
+     * initial menssage
+     */
+     router.get('/', (req: Request, res: Response) => { res.send('Welcome to TODO API BY C.E.') });
+
+    /**
      * GET /todos
      * Get all todos
      */
@@ -33,5 +39,11 @@ export const register = (router: Router) => {
      * Update a todo
      */
     router.put('/todos/:id', middleware.checkTodoUpdate,(req: Request, res: Response) => todosUpdateController.run(req, res));
+
+    /**
+     * GET *
+     * validated endpoint
+     */
+    router.get('*', (req: Request, res: Response) => { res.send('The Endpoint is no valid') });
 
 };
