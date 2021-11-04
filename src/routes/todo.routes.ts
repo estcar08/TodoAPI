@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { todosGetController,todosPostController, todosGetByIdController,todosDeleteController,todosUpdateController  } from '../controllers'; // This should not be here
-
+import { middleware } from '../middlewares'; 
 
 export const register = (router: Router) => {
 
@@ -14,7 +14,7 @@ export const register = (router: Router) => {
      * POST /todos
      * Create a new todo
      */
-    router.post('/todos', (req: Request, res: Response) => todosPostController.run(req, res));
+    router.post('/todos',  middleware.checkTodoCreate,(req: Request, res: Response) => todosPostController.run(req, res));
 
     /**
      * GET /todos/:id
@@ -32,6 +32,6 @@ export const register = (router: Router) => {
      * PUT /
      * Update a todo
      */
-    router.put('/todos/:id', (req: Request, res: Response) => todosUpdateController.run(req, res));
+    router.put('/todos/:id', middleware.checkTodoUpdate,(req: Request, res: Response) => todosUpdateController.run(req, res));
 
 };
